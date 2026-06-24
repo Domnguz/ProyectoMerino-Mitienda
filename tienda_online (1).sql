@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-06-2026 a las 04:53:43
+-- Tiempo de generación: 24-06-2026 a las 17:25:40
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -84,7 +84,14 @@ INSERT INTO `detalle_pedidos` (`id`, `pedido_id`, `producto_id`, `cantidad`, `pr
 (18, 28, 25, 1, 69.00, 69.00),
 (19, 28, 22, 1, 89.00, 89.00),
 (20, 29, 20, 2, 59.00, 118.00),
-(21, 29, 26, 2, 19.00, 38.00);
+(21, 29, 26, 2, 19.00, 38.00),
+(22, 30, 30, 1, 199.00, 199.00),
+(23, 30, 24, 1, 29.00, 29.00),
+(24, 30, 19, 1, 39.00, 39.00),
+(25, 30, 31, 2, 40.00, 80.00),
+(26, 31, 30, 1, 199.00, 199.00),
+(27, 32, 20, 1, 59.00, 59.00),
+(28, 32, 28, 1, 39.00, 39.00);
 
 -- --------------------------------------------------------
 
@@ -109,7 +116,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (6, '2026_06_18_220626_create_categorias_table', 1),
 (7, '2026_06_19_051027_create_pedidos_table', 1),
 (8, '2026_06_19_051423_create_detalle_pedidos_table', 1),
-(9, '2026_06_19_155756_add_foto_to_users_table', 1);
+(9, '2026_06_19_155756_add_foto_to_users_table', 1),
+(10, '2026_06_24_025522_agregar_datos_personales_a_users_table', 2);
 
 -- --------------------------------------------------------
 
@@ -160,7 +168,10 @@ INSERT INTO `pedidos` (`id`, `usuario_id`, `fecha`, `total`, `estado`, `created_
 (26, 6, '2026-06-23 03:44:52', 70.00, 'Pagado', '2026-06-23 08:44:52', '2026-06-23 08:45:02'),
 (27, 6, '2026-06-23 03:54:29', 140.00, 'Pendiente', '2026-06-23 08:54:29', '2026-06-23 08:54:29'),
 (28, 1, '2026-06-23 16:41:33', 158.00, 'Pagado', '2026-06-23 21:41:33', '2026-06-24 05:05:06'),
-(29, 1, '2026-06-24 02:14:22', 156.00, 'Rechazado', '2026-06-24 07:14:22', '2026-06-24 07:14:47');
+(29, 1, '2026-06-24 02:14:22', 156.00, 'Rechazado', '2026-06-24 07:14:22', '2026-06-24 07:14:47'),
+(30, 7, '2026-06-24 03:15:09', 347.00, 'Pendiente', '2026-06-24 08:15:09', '2026-06-24 08:15:09'),
+(31, 7, '2026-06-24 03:29:27', 199.00, 'Pendiente', '2026-06-24 08:29:27', '2026-06-24 08:29:27'),
+(32, 7, '2026-06-24 15:19:20', 98.00, 'Pendiente', '2026-06-24 20:19:20', '2026-06-24 20:19:20');
 
 -- --------------------------------------------------------
 
@@ -185,19 +196,19 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`id`, `categoria_id`, `nombre`, `descripcion`, `precio`, `stock`, `imagen`, `created_at`, `updated_at`) VALUES
-(19, 3, 'Zapatillas - Adidas A5 520', NULL, 39.00, 5, 'productos/cwmF7SQYCuKo90FM9mFclZmIREQ2m66xAJ4x4efw.jpg', '2026-06-19 01:49:44', '2026-06-23 02:45:17'),
-(20, 3, 'Zapatillas - Adidas Hamburg', 'Nuevas zapatillas Originales', 59.00, 4, 'productos/11DM2KosRq1g1FZFnUGqLiNzy8Kmb6mIUP24eKZo.jpg', '2026-06-19 01:54:01', '2026-06-24 07:14:22'),
+(19, 3, 'Zapatillas - Adidas A5 520', NULL, 39.00, 4, 'productos/cwmF7SQYCuKo90FM9mFclZmIREQ2m66xAJ4x4efw.jpg', '2026-06-19 01:49:44', '2026-06-24 08:15:09'),
+(20, 3, 'Zapatillas - Adidas Hamburg', 'Nuevas zapatillas Originales', 59.00, 3, 'productos/11DM2KosRq1g1FZFnUGqLiNzy8Kmb6mIUP24eKZo.jpg', '2026-06-19 01:54:01', '2026-06-24 20:19:20'),
 (21, 3, 'Zapatillas Deportivas - Adidas', 'Zapatillas Deportivas originales', 70.00, 0, 'productos/HgX2oji6lSCWfuvq8Tr9QRn6ACVMFgEp4F6kLLO2.png', '2026-06-19 01:55:07', '2026-06-23 08:54:29'),
 (22, 3, 'Zapatillas Urbanas - Adidas', 'Disfruta de lo más nuevo, Zapatillas Urbanas Adidas Hombre Run', 89.00, 2, 'productos/nQI2UrSwRp8vdJBZGbbpy0BviMYmxIAyilpt8Ajm.webp', '2026-06-19 01:57:43', '2026-06-24 05:05:06'),
 (23, 2, 'Camisa Azul - Adidas', NULL, 50.00, 4, 'productos/2T7jIRlf8UIbrC80fWX9GoO0lBeH5KgYBGS6qcsh.webp', '2026-06-19 02:12:00', '2026-06-19 06:09:19'),
-(24, 2, 'Polo Blanco Deportivo - Adidas', NULL, 29.00, 12, 'productos/13QBAw0jhgKWVHJOxiZ5KtSZWTo6VTs2m4pQVAU1.webp', '2026-06-19 02:12:57', '2026-06-23 07:48:34'),
+(24, 2, 'Polo Blanco Deportivo - Adidas', NULL, 29.00, 11, 'productos/13QBAw0jhgKWVHJOxiZ5KtSZWTo6VTs2m4pQVAU1.webp', '2026-06-19 02:12:57', '2026-06-24 08:15:09'),
 (25, 2, 'Polo azul - Adidas', NULL, 69.00, 1, 'productos/z9ISUXclnLhnNVuToTo0NUHnFqhyPI5N0xr8rNb4.webp', '2026-06-19 02:14:42', '2026-06-24 05:05:06'),
 (26, 2, 'Polo Negro - Adidas', NULL, 19.00, 1, 'productos/Ly9umubNUklqalMhiAyeBJWvQ7nfsuVBluhD3lQI.webp', '2026-06-19 02:15:12', '2026-06-24 07:14:22'),
 (27, 2, 'Polo Rojo - Adidas', NULL, 39.00, 8, 'productos/Qbatn6vPvCnqS6O0ppAKzgiA8Fjz4uDpZhsxPs07.webp', '2026-06-19 06:03:17', '2026-06-19 06:03:17'),
-(28, 4, 'Gorra de Adidas con Bordado Lineal', NULL, 39.00, 6, 'productos/Rc9IbKuhWhL9aiUQayHX2npLHixzn6uHaSwg4bne.avif', '2026-06-22 05:58:25', '2026-06-22 06:03:43'),
+(28, 4, 'Gorra de Adidas con Bordado Lineal', NULL, 39.00, 5, 'productos/Rc9IbKuhWhL9aiUQayHX2npLHixzn6uHaSwg4bne.avif', '2026-06-22 05:58:25', '2026-06-24 20:19:20'),
 (29, 4, 'Gorro BZRP', NULL, 69.00, -4, 'productos/0F1SlzUl2AD64v52YW2arQmNEbh1iiJEGuRn9nFP.avif', '2026-06-22 06:02:18', '2026-06-23 03:54:17'),
-(30, 4, 'Gorra Merceedes - Amg Petronas F1 Team Driver', NULL, 199.00, 2, 'productos/8XNWOB4zfWElkQFv8wakY13QdEp6YOtPkSwzq0Fk.avif', '2026-06-22 06:04:40', '2026-06-23 03:54:17'),
-(31, 4, 'Gorra de Béisbol Alternativa Graphic Selección Argentina 26', NULL, 40.00, 2, 'productos/cCu1uVknR89i9zqhlJDHdwWuHRydzlUPztdgR7J5.avif', '2026-06-22 06:05:40', '2026-06-23 02:44:19'),
+(30, 4, 'Gorra Merceedes - Amg Petronas F1 Team Driver', NULL, 199.00, 0, 'productos/8XNWOB4zfWElkQFv8wakY13QdEp6YOtPkSwzq0Fk.avif', '2026-06-22 06:04:40', '2026-06-24 08:29:27'),
+(31, 4, 'Gorra de Béisbol Alternativa Graphic Selección Argentina 26', NULL, 40.00, 0, 'productos/cCu1uVknR89i9zqhlJDHdwWuHRydzlUPztdgR7J5.avif', '2026-06-22 06:05:40', '2026-06-24 08:15:09'),
 (32, 3, 'Zapatillas Air Max - Nike', NULL, 99.00, 7, 'productos/vTMtmKKgSjOa5asmZl912vXrxvxSAf4vluUTo50i.webp', '2026-06-22 06:29:16', '2026-06-22 06:29:16');
 
 -- --------------------------------------------------------
@@ -209,6 +220,10 @@ INSERT INTO `productos` (`id`, `categoria_id`, `nombre`, `descripcion`, `precio`
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
+  `apellidos` varchar(255) DEFAULT NULL,
+  `dni` varchar(8) DEFAULT NULL,
+  `telefono` varchar(20) DEFAULT NULL,
+  `genero` enum('Masculino','Femenino') DEFAULT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
   `rol` enum('admin','cliente') DEFAULT 'cliente',
@@ -221,12 +236,13 @@ CREATE TABLE `users` (
 -- Volcado de datos para la tabla `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `rol`, `foto`, `created_at`, `updated_at`) VALUES
-(1, 'David Dominguez', 'admin@tienda.com', '$2y$12$76NHt6OXL2BppbS6SxD/JuPwg91v2eHZuhbimpOR/6.BixAULzPP6', 'admin', 'usuarios/SK4i8vhWd4n3RxFTN9HWqz5eZmu7CgOtk4L6RbvL.jpg', '2026-06-17 03:52:43', '2026-06-23 07:45:36'),
-(3, 'Armando Shai', 'armandoshai@gmail.com', '$2y$12$IgCZQGFDV5WhX6xnCs5yvuDD2JXMfttXOMCq/yA8L.q/Mx/5FDjIK', 'cliente', 'usuarios/MlzjSgc1b6vKm7r4Aj3bxv03V2kZBO23bxYWfOQC.jpg', '2026-06-19 21:33:06', '2026-06-19 21:37:37'),
-(4, 'Juan Joseph Yacilla Mogollon', 'juanjoseph@tienda.com', '$2y$12$jsaLNXYVlCyDxswaJBG/5OqOnqSc20/JsvlmjaJfa3TZX5mA916/G', 'cliente', 'usuarios/WZhwPfZtL3nkgRlQolecrF0KozYUqYDIMIiVeRLn.webp', '2026-06-23 02:41:51', '2026-06-23 02:41:51'),
-(5, 'Lleiker Palacios Jimenez', 'lleiker123@tienda.com', '$2y$12$MWjmTm8avqSb5yGl.l2CR.1nscD4crLDu6soInBxD3Rtxsv9EqFIS', 'cliente', 'usuarios/WWaZJKFBmnjmg3Mxctfmavz2L1wq0cx1m03eAOoc.webp', '2026-06-23 03:52:20', '2026-06-23 03:52:20'),
-(6, 'Sami Fernanda', 'sami@tienda.com', '$2y$12$tAJqP9B62nNdMaLkIlYq9uHVzZCbM5yTnJmBJtfSbX54UgG0BOraS', 'cliente', 'usuarios/iFVabrRw7Ai3fYwGPR8qIFH4BnZ8nNTEcyNa3MwC.webp', '2026-06-23 07:46:15', '2026-06-23 07:46:15');
+INSERT INTO `users` (`id`, `name`, `apellidos`, `dni`, `telefono`, `genero`, `email`, `password`, `rol`, `foto`, `created_at`, `updated_at`) VALUES
+(1, 'David', 'Dominguez Valdiviezo', '60991873', '908074316', 'Masculino', 'admin@tienda.com', '$2y$12$xeMWAHaAqekoIgSItILHkeLeSrJsi5em0WnkDfSm/IYIWB.pBvb3a', 'admin', 'usuarios/SK4i8vhWd4n3RxFTN9HWqz5eZmu7CgOtk4L6RbvL.jpg', '2026-06-17 03:52:43', '2026-06-24 08:18:35'),
+(3, 'Armando Shai', 'Atoche Ventura', '60998853', '984738435', 'Masculino', 'armandoshai@gmail.com', '$2y$12$ZVPkX1WnZ/3Z66NAkXYATuLyH7xIWvs/PgfJ2znJYM0o5yteivuG.', 'cliente', 'usuarios/MlzjSgc1b6vKm7r4Aj3bxv03V2kZBO23bxYWfOQC.jpg', '2026-06-19 21:33:06', '2026-06-24 08:19:03'),
+(4, 'Juan Joseph', 'Yacilla Mogollon', '60998832', '94785643', 'Masculino', 'juanjoseph@tienda.com', '$2y$12$TzvcoB6lqhxoqNBJwFLr3OLu1jkF0i.dGt7zglxtDj3DGemWPb5sW', 'cliente', 'usuarios/WZhwPfZtL3nkgRlQolecrF0KozYUqYDIMIiVeRLn.webp', '2026-06-23 02:41:51', '2026-06-24 08:19:25'),
+(5, 'Lleiker', 'Palacios Jimenez', '60997437', '972709593', 'Masculino', 'lleiker123@tienda.com', '$2y$12$.S.LPIWhduc5eonHAIeMneykZpZgIc/xmBd/vo5X2yeOE5FvNIOY2', 'cliente', 'usuarios/WWaZJKFBmnjmg3Mxctfmavz2L1wq0cx1m03eAOoc.webp', '2026-06-23 03:52:20', '2026-06-24 08:19:52'),
+(6, 'Sami Fernanda', 'Dominguez Valdiviezo', '60332213', '908043123', 'Masculino', 'sami@tienda.com', '$2y$12$/sbceoO067od/B59gCn2RO0KcQrvIbpYRnlgbkaHsx9C516zODZhy', 'cliente', 'usuarios/iFVabrRw7Ai3fYwGPR8qIFH4BnZ8nNTEcyNa3MwC.webp', '2026-06-23 07:46:15', '2026-06-24 08:20:12'),
+(7, 'Carlos', 'Ramirez Torrez', '60258194', '987654321', 'Masculino', 'carlosrramirez@tienda.com', '$2y$12$5WSV6wfaBp6ZxgMwr5yP7O3wvWseZNjolR2CX3h8eqH.jD9kdOUXS', 'cliente', 'usuarios/N7sci31jc1YmpKyl5N2Ki8AdbKhS6Uenl1NxCzPm.webp', '2026-06-24 08:14:17', '2026-06-24 08:14:17');
 
 --
 -- Índices para tablas volcadas
@@ -271,7 +287,8 @@ ALTER TABLE `productos`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`);
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `users_dni_unique` (`dni`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -287,19 +304,19 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `detalle_pedidos`
 --
 ALTER TABLE `detalle_pedidos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `pedidos`
 --
 ALTER TABLE `pedidos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
@@ -311,7 +328,7 @@ ALTER TABLE `productos`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restricciones para tablas volcadas

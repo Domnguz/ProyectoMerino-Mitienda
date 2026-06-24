@@ -1,59 +1,305 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🛒 Mi Tienda Online - Proyecto Laravel
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## 📋 Descripción
 
-## About Laravel
+Mi Tienda Online es una aplicación web desarrollada con Laravel que permite la gestión de productos, categorías, usuarios y pedidos, incluyendo un sistema de carrito de compras dinámico y panel administrativo.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+El sistema cuenta con diferentes funcionalidades para clientes y administradores, permitiendo realizar compras, administrar inventario y gestionar pedidos.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+# 🚀 Tecnologías Utilizadas
 
-## Learning Laravel
+## Backend
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+* Laravel 12
+* PHP 8.2
+* MySQL
+* Eloquent ORM
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Frontend
 
-## Laravel Sponsors
+* Blade Templates
+* HTML5
+* Tailwind CSS
+* JavaScript
+* AJAX (Fetch API)
+* SweetAlert2
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Herramientas
 
-### Premium Partners
+* Vite
+* Git
+* GitHub
+* AdminLTE
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+---
 
-## Contributing
+# 👥 Gestión de Usuarios
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+El sistema permite administrar usuarios con diferentes roles:
 
-## Code of Conduct
+### Administrador
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+* Crear usuarios
+* Editar usuarios
+* Eliminar usuarios
+* Gestionar productos
+* Gestionar categorías
+* Gestionar pedidos
 
-## Security Vulnerabilities
+### Cliente
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+* Iniciar sesión
+* Ver productos
+* Agregar productos al carrito
+* Realizar compras
+* Consultar su perfil
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# 🧑 Perfil de Usuario
+
+Cada usuario cuenta con información personalizada:
+
+* Nombre
+* Apellidos
+* DNI
+* Teléfono
+* Género
+* Correo electrónico
+* Foto de perfil
+
+---
+
+# 📦 Gestión de Productos
+
+Los administradores pueden:
+
+* Crear productos
+* Editar productos
+* Eliminar productos
+* Subir imágenes
+* Administrar stock
+* Asignar categorías
+
+Cada producto contiene:
+
+* Nombre
+* Descripción
+* Precio
+* Stock
+* Imagen
+* Categoría
+
+---
+
+# 🗂️ Categorías
+
+El sistema permite:
+
+* Crear categorías
+* Editar categorías
+* Eliminar categorías
+* Filtrar productos por categoría
+
+Las categorías aparecen en el menú principal para facilitar la navegación.
+
+---
+
+# 🛒 Carrito de Compras
+
+Funcionalidades implementadas:
+
+* Agregar productos mediante AJAX
+* Actualización dinámica sin recargar la página
+* Carrito lateral deslizante
+* Contador de productos en tiempo real
+* Eliminación de productos
+* Cálculo automático del total
+
+---
+
+# 💳 Sistema de Compras
+
+Proceso de compra:
+
+1. Selección de productos
+2. Agregado al carrito
+3. Checkout
+4. Confirmación de pedido
+5. Registro en base de datos
+6. Actualización automática de stock
+
+---
+
+# 📄 Gestión de Pedidos
+
+El sistema registra:
+
+* Pedido
+* Cliente
+* Fecha
+* Total
+* Estado del pedido
+
+Estados disponibles:
+
+* Pendiente
+* Aprobado
+* Rechazado
+
+Además se almacena el detalle completo de cada pedido.
+
+---
+
+# 🔔 Notificaciones
+
+Se implementaron notificaciones utilizando SweetAlert2 para:
+
+* Producto agregado al carrito
+* Compra realizada correctamente
+* Mensajes de éxito
+* Mensajes de error
+
+---
+
+# 🗄️ Base de Datos
+
+Tablas principales:
+
+### users
+
+Información de usuarios.
+
+### categorias
+
+Categorías de productos.
+
+### productos
+
+Productos registrados en la tienda.
+
+### pedidos
+
+Compras realizadas por los clientes.
+
+### detalle_pedidos
+
+Detalle de cada producto comprado.
+
+---
+
+# 🔐 Seguridad
+
+Se utiliza:
+
+* Middleware auth
+* Autenticación Laravel
+* Protección CSRF
+* Validación de formularios
+
+---
+
+# 📷 Funcionalidades Destacadas
+
+✅ Login de usuarios
+
+✅ Gestión de usuarios
+
+✅ Gestión de categorías
+
+✅ Gestión de productos
+
+✅ Subida de imágenes
+
+✅ Control de stock
+
+✅ Carrito AJAX
+
+✅ Contador dinámico del carrito
+
+✅ Checkout
+
+✅ Registro de pedidos
+
+✅ Detalle de pedidos
+
+✅ Perfil de usuario
+
+✅ Notificaciones SweetAlert2
+
+✅ Panel Administrativo AdminLTE
+
+---
+
+# 📂 Estructura Principal del Proyecto
+
+```text
+app/
+├── Http/
+│   ├── Controllers/
+│   ├── Middleware/
+│
+resources/
+├── views/
+│   ├── layouts/
+│   ├── partials/
+│   ├── productos.blade.php
+│   ├── categoria.blade.php
+│   ├── profile.blade.php
+│
+routes/
+├── web.php
+
+database/
+├── migrations/
+```
+
+---
+
+# ⚙️ Instalación
+
+```bash
+git clone https://github.com/Domnguz/ProyectoMerino-Mitienda.git
+
+cd ProyectoMerino-Mitienda
+
+composer install
+
+npm install
+
+cp .env.example .env
+
+php artisan key:generate
+
+php artisan migrate
+
+php artisan storage:link
+
+npm run dev
+
+php artisan serve
+```
+
+---
+
+# 📌 Estado Actual del Proyecto
+
+Proyecto en desarrollo.
+
+Próximas mejoras:
+
+* Dashboard de ventas
+* Gráficos estadísticos
+* Historial de pedidos del cliente
+* Mejoras visuales del perfil
+* Reportes administrativos
+
+---
+
+# 👨‍💻 Autor
+
+David Domínguez Valdiviezo
+
+Proyecto académico desarrollado con Laravel, Tailwind CSS, JavaScript y MySQL.
