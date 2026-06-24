@@ -25,7 +25,13 @@ Route::get('/checkout', [CheckoutController::class, 'index'])
 Route::post('/checkout', [CheckoutController::class, 'procesar'])
     ->middleware('auth');
 
+Route::get('/carrito/contenido', function () {
+    return view('partials.carrito-contenido');
+});
 
+Route::get('/carrito/vista', function () {
+    return view('partials.carrito-contenido');
+});
 
 Route::middleware('auth')->prefix('admin')->group(function () {
 

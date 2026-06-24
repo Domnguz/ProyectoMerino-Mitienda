@@ -70,10 +70,8 @@
             </span>
 
         </div>
-        <form action="/carrito/agregar/{{ $producto->id }}"
-      method="POST">
-
-    @csrf
+        <form class="form-agregar-carrito" data-id="{{ $producto->id }}">
+            @csrf
 
     @if($producto->stock > 0)
 

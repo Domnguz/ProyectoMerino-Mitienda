@@ -87,21 +87,25 @@
     </div>
 
 </div>
-<form action="/carrito/agregar/{{ $producto->id }}" method="POST">
+    <form
+    class="form-agregar-carrito"
+    data-id="{{ $producto->id }}"
+    action="/carrito/agregar/{{ $producto->id }}"
+    method="POST">
 
-    @csrf
+        @csrf
 
-    @if($producto->stock > 0)
+        @if($producto->stock > 0)
 
-        <button
-            type="submit"
-            class="mt-5 w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-bold transition">
+                <button
+                    type="submit"
+                    class="btn-comprar mt-5 w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-bold transition">
 
-            Comprar
+                    Comprar
 
-        </button>
+                </button>
 
-    @else
+            @else
 
         <button
             type="button"
@@ -131,10 +135,8 @@
         </h2>
 
     </div>
-
-</div>
-
 @endforelse
 
 </div>
+
 @endsection

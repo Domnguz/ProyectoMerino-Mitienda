@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+@viteReactRefresh
+    @vite(['resources/css/app.css', 'resources/js/app.jsx'])
 
     <title>Mi Tienda</title>
 </head>
@@ -44,7 +44,7 @@
                 <a href="/productos"
                 id="btnCategorias"
                 class="text-gray-300 hover:text-white font-medium transition">
-                    Productos ▼
+                    Productos 
                 </a>
 
                 <div id="menuCategorias"
@@ -105,12 +105,24 @@
 
 <!-- Carrito flotante -->
 
+<div class="fixed bottom-8 right-8 z-[60]">
+
     <button id="abrirCarrito"
-        class="fixed bottom-8 right-8 w-16 h-16 bg-blue-600 hover:bg-blue-700 rounded-full shadow-2xl flex items-center justify-center text-white text-3xl z-50">
+        class="relative w-16 h-16 bg-blue-600 hover:bg-blue-700 rounded-full shadow-2xl flex items-center justify-center text-white text-3xl">
 
         🛒
 
+        <span id="contadorCarrito"
+            class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center">
+
+            {{ collect(session('carrito', []))->sum('cantidad') }}
+
+        </span>
+
     </button>
+
+</div>
+    
     <!-- Panel lateral del carrito -->
     <div id="overlayCarrito"
         class="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 hidden">
@@ -141,80 +153,11 @@
 
     </div>
 
+    <div id="contenidoCarrito" class="p-5">
 
-    <div class="p-5">
+    @include('partials.carrito-contenido')
 
-        @php
-            $carrito = session('carrito', []);
-        @endphp
-
-        @if(count($carrito) > 0)
-
-        @foreach($carrito as $item)
-
-        <div class="p-4 border-b flex justify-between items-start">
-
-            <div>
-
-                <h3 class="font-bold text-gray-800">
-                    {{ $item['nombre'] }}
-                </h3>
-
-                <p class="text-blue-600">
-                    S/ {{ number_format($item['precio'],2) }}
-                </p>
-
-                <p class="text-sm text-gray-500">
-                    Cantidad: {{ $item['cantidad'] }}
-                </p>
-
-            </div>
-
-        <form action="/carrito/eliminar/{{ $item['id'] }}"
-            method="POST">
-
-            @csrf
-
-            <button
-                type="submit"
-                title="Eliminar producto"
-                class="flex items-center justify-center
-                    w-7 h-7
-                    rounded-full
-                    bg-red-100
-                    text-red-500
-                    hover:bg-red-500
-                    hover:text-white
-                    transition-all duration-300">
-
-                ✕
-                
-            </button>
-
-        </form>
-
-        </div>
-
-        @endforeach
-                <div class="mt-6">
-
-                    <a href="/carrito"
-                    class="block w-full text-center bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-xl">
-
-                        Ver Carrito Completo
-
-                    </a>
-
-                </div>
-        @else
-
-            <p class="text-gray-500">
-                No hay productos en el carrito.
-            </p>
-
-        @endif
-
-    </div>
+</div>
 
 </div>
 
@@ -293,6 +236,82 @@ overlayCarrito.addEventListener('click', () => {
     carritoModal.classList.add('translate-x-full');
 
     overlayCarrito.classList.add('hidden');
+
+});
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    document.querySelectorAll('.form-agregar-carrito').forEach(form => {
+
+        form.addEventListener('submit', async function(e) {
+
+            e.preventDefault();
+
+            const id = this.getAttribute('data-id');
+
+            const response = await fetch(`/carrito/agregar/${id}`, {
+                method: 'POST',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRF-TOKEN': this.querySelector('[name=_token]').value
+                }
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Producto agregado al carrito 🛒',
+                    showConfirmButton: false,
+                    timer: 1800,
+                    timerProgressBar: true
+                });
+
+                const contador = document.getElementById('contadorCarrito');
+
+                if (contador) {
+
+                    contador.innerText = data.cantidad;
+
+                    contador.classList.add('scale-125');
+
+                    setTimeout(() => {
+                        contador.classList.remove('scale-125');
+                    }, 300);
+
+                }
+
+                // Abrir carrito
+                document
+                    .getElementById('carritoModal')
+                    .classList.remove('translate-x-full');
+
+                document
+                    .getElementById('overlayCarrito')
+                    .classList.remove('hidden');
+
+                // Actualizar contenido del carrito
+                fetch('/carrito/contenido')
+                    .then(res => res.text())
+                    .then(html => {
+
+                        document.getElementById('contenidoCarrito').innerHTML = html;
+
+                    });
+            }
+
+        });
+
+    });
 
 });
 

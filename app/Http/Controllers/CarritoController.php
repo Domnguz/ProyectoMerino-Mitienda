@@ -14,47 +14,42 @@ class CarritoController extends Controller
         return view('carrito', compact('carrito'));
     }
 
-public function agregar($id)
-{
-    $producto = Producto::findOrFail($id);
+    public function agregar($id)
+    {
+        $producto = Producto::findOrFail($id);
 
-    $carrito = session()->get('carrito', []);
+        $carrito = session()->get('carrito', []);
 
-    if (isset($carrito[$id])) {
+        if (isset($carrito[$id])) {
 
-        $carrito[$id]['cantidad']++;
+            $carrito[$id]['cantidad']++;
 
-    } else {
+        } else {
 
-        $carrito[$id] = [
-            'id' => $producto->id,
-            'nombre' => $producto->nombre,
-            'precio' => $producto->precio,
-            'imagen' => $producto->imagen,
-            'cantidad' => 1
-        ];
+            $carrito[$id] = [
+                'id' => $producto->id,
+                'nombre' => $producto->nombre,
+                'precio' => $producto->precio,
+                'imagen' => $producto->imagen,
+                'cantidad' => 1
+            ];
+        }
+
+        session()->put('carrito', $carrito);
+
+        // Si la petición viene por AJAX
+       return response()->json([
+    'success' => true,
+    'message' => 'Producto agregado al carrito',
+    'cantidad' => collect($carrito)->sum('cantidad')
+]);
     }
-
-    session()->put('carrito', $carrito);
-
-    // Si viene desde JavaScript
-    if (request()->ajax()) {
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Producto agregado al carrito',
-            'cantidad' => count($carrito)
-        ]);
-    }
-
-    return back()->with('success', 'Producto agregado al carrito');
-}
 
     public function eliminar($id)
     {
         $carrito = session()->get('carrito', []);
 
-        if(isset($carrito[$id])) {
+        if (isset($carrito[$id])) {
 
             unset($carrito[$id]);
 
@@ -64,3 +59,4 @@ public function agregar($id)
         return back();
     }
 }
+?>
