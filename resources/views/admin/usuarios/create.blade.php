@@ -17,14 +17,70 @@
               enctype="multipart/form-data">
 
             @csrf
+<div class="form-group">
+    <label>Nombre</label>
+
+    <input type="text"
+           name="name"
+           class="form-control"
+           required>
+</div>
+
+ <div class="form-group">
+    <label>Apellidos</label>
+
+    <input type="text"
+           name="apellidos"
+           class="form-control">
+</div>
+
+<div class="form-group">
+
+    <label>DNI</label>
+
+    <input type="text"
+           name="dni"
+           class="form-control"
+           maxlength="8"
+           minlength="8"
+           required>
+
+</div>
+
+ <div class="form-group">
+
+    <label>Teléfono</label>
+
+    <input type="text"
+           name="telefono"
+           class="form-control"
+           maxlength="9"
+           required>
+
+</div>
 
             <div class="form-group">
-                <label>Nombre</label>
 
-                <input type="text"
-                       name="name"
-                       class="form-control"
-                       required>
+                <label>Género</label>
+
+                <select name="genero"
+                        class="form-control"
+                        required>
+
+                    <option value="">
+                        Seleccione
+                    </option>
+
+                    <option value="Masculino">
+                        Masculino
+                    </option>
+
+                    <option value="Femenino">
+                        Femenino
+                    </option>
+
+                </select>
+
             </div>
 
             <div class="form-group">

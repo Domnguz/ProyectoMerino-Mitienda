@@ -11,7 +11,7 @@ use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PedidoController;
-
+use App\Http\Controllers\ProfileController;
 
 Route::get('/carrito', [CarritoController::class, 'index']);
 
@@ -96,7 +96,12 @@ Route::get('/categoria/{id}', [ProductoController::class, 'categoria']);
 
 
 
+Route::middleware('auth')->group(function () {
 
+    Route::get('/profile', [ProfileController::class, 'index'])
+        ->name('profile');
+
+});
 
 Route::get('/login', function () {
     return view('login');

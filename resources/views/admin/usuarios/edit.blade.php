@@ -33,6 +33,71 @@
 
 <div class="form-group">
 
+<label>Apellidos</label>
+
+<input type="text"
+       name="apellidos"
+       class="form-control"
+       value="{{ $usuario->apellidos }}"
+       required>
+
+</div>
+
+<div class="form-group">
+
+<label>DNI</label>
+
+<input type="text"
+       name="dni"
+       class="form-control"
+       value="{{ $usuario->dni }}"
+       maxlength="8"
+       minlength="8"
+       required>
+
+</div>
+
+<div class="form-group">
+
+<label>Teléfono</label>
+
+<input type="text"
+       name="telefono"
+       class="form-control"
+       value="{{ $usuario->telefono }}"
+       maxlength="9"
+       required>
+
+</div>
+
+<div class="form-group">
+
+<label>Género</label>
+
+<select name="genero"
+        class="form-control"
+        required>
+
+<option value="">
+Seleccione
+</option>
+
+<option value="Masculino"
+{{ $usuario->genero == 'Masculino' ? 'selected' : '' }}>
+Masculino
+</option>
+
+<option value="Femenino"
+{{ $usuario->genero == 'Femenino' ? 'selected' : '' }}>
+Femenino
+</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
 <label>Email</label>
 
 <input type="email"

@@ -38,6 +38,11 @@ class UserController extends Controller
         User::create([
 
             'name' => $request->name,
+            'apellidos' => $request->apellidos,
+            'dni' => $request->dni,
+            'telefono' => $request->telefono,
+            'genero' => $request->genero,
+
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'rol' => $request->rol,
@@ -65,6 +70,11 @@ class UserController extends Controller
         $usuario = User::findOrFail($id);
 
         $usuario->name = $request->name;
+        $usuario->apellidos = $request->apellidos;
+        $usuario->dni = $request->dni;
+        $usuario->telefono = $request->telefono;
+        $usuario->genero = $request->genero;
+
         $usuario->email = $request->email;
         $usuario->rol = $request->rol;
 
